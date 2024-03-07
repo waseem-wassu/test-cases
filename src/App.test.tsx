@@ -1,43 +1,24 @@
 import { fireEvent, render,screen } from "@testing-library/react"
 import App from "./App"
 
-//hooks in jest and React testing library
+//Snapshot testing : once all the development is completed then we need to implement this.
 
 /*
-Note:
-1.beforeAll runs only once before all the test cases
-2.beforeEach runs before each test case
-3.afterAll runs only once after all the test cases
-4.afterEach runs after each test case
+ When we use `toMatchSnapshot`,
+ Jest saves a picture of the output.Later, it compares this picture to the current output.
+ If they're different, the test fails.'
+
+ if you want to update the changes then just press u 
+
+
+ 
+ Note:
+ Snapshot tests shouldn't replace traditional unit or integration tests.
+ Use them together with other testing methods for better coverage.
 */
 
-beforeAll(()=> {
-  console.log("_______________Running before all _______________")
-})
+test("Lets try snapshot testing",() => {
+  const container = render(<App/>)
+  expect(container).toMatchSnapshot()
 
-beforeEach(() => {
-  console.log("_______________Running before each _______________")
-})
-
-afterAll(() => {
-  console.log("****************** after all the test cases *********************");
-})
-afterEach(() => {
-  console.log("****************** after each test case *********************");
-})
-test("Testing behaviour of the button",()=> {
-  console.log("********* case-1 ******************");
-  render(<App/>)
-  let titleOfTheText = screen.getByText("test click event with button")
-  expect(titleOfTheText).toBeInTheDocument()
-})
-
-test("Testing behaviour of the button",()=> {
-  console.log("********* case-2 ******************");
-  render(<App/>)
-  let titleOfTheText = screen.getByText("test click event with button")
-  expect(titleOfTheText).toBeInTheDocument()
-  let getTheButton = screen.getByRole("button");
-  fireEvent.click(getTheButton)
-  expect(screen.getByText("Greeting is: heyya"))
 })
