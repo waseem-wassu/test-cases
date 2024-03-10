@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
+import User from "./User";
 
 const App = () => {
-  const [data,setData] = React.useState<boolean>(false);
   const [name,setName] = React.useState<string>("")
-  useEffect(() => {
-    setTimeout(() => {
-     setData(true)
-    },500)
-  }, []);
 
+  const [status,setStatus] = React.useState<boolean>(false)
 
+  const changeStatus = () => {
+    setStatus(!status)
+  }
+  
   return (
     <div>
-      <h3>findBy and findAllBy</h3>
-      {data ? <h4>hello</h4> : <h4>bye</h4>}
-      {/* this is for user event test case  */}
-      <p>{name}</p>
-      <button onClick={() => setName("Waseem")}>Click Me</button>
+      <h1>{name}</h1>
+      <input value={name} onChange={(e) => setName(e.target.value)} type="text" name="" id="" />
+      <User name={name} status={status} changeStatus={changeStatus} />        
     </div>
-  );
+  )
+  
 };
 
 export default App;

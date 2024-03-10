@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/coverage
 
 # extra files
 testCases.md
